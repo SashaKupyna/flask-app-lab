@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 text-center mb-4">
+    <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="фото профілю" class="img-fluid rounded shadow-sm mb-3" style="max-height: 350px; object-fit: cover;">
+    <h2>Купина Олександр</h2>
+    <p class="text-white">Студент розробник</p>
+  </div>
+
+  <div class="col-md-8">
+    <section class="card mb-3 p-3 shadow-sm">
+      <h3>Про себе</h3>
+      <p>Студент 3-го курсу</p>
+    </section>
+
+    <section class="card mb-3 p-3 shadow-sm">
+      <h3>Освіта</h3>
+      <p>Спеціальність 121 «Інженерія програмного забезпечення»</p>
+    </section>
+
+    <section class="card mb-3 p-3 shadow-sm">
+      <h3>Навички та Технології</h3>
+      <ul>
+        <li>Python, Flask</li>
+        <li>HTML5, CSS3, Bootstrap</li>
+        <li>Git, GitHub</li>
+      </ul>
+    </section>
+
+    <section class="card mb-3 p-3 shadow-sm">
+      <h3>Проєкти</h3>
+      <p><a href="https://github.com/SashaKupyna" target="_blank" class="text-info text-decoration-none">Мої проєкти на GitHub</a></p>
+    </section>
+  </div>
+</div>
+{% endblock %}
