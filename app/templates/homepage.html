@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card bg-body-tertiary border-secondary shadow-sm mb-4">
+  <div class="card-header border-secondary bg-dark text-white">
+    <h3 class="mb-0">Homepage - Інформація про клієнта</h3>
+  </div>
+  <div class="card-body">
+    <p class="lead">Ласкаво просимо на домашню сторінку веб-додатку!</p>
+    <div class="list-group">
+      <div class="list-group-item bg-dark text-light border-secondary">
+        <strong>Браузер:</strong> {{ agent.browser or "Не визначено" }}
+      </div>
+      <div class="list-group-item bg-dark text-light border-secondary">
+        <strong>Версія браузера:</strong> {{ agent.version or "Не визначено" }}
+      </div>
+      <div class="list-group-item bg-dark text-light border-secondary">
+        <strong>Операційна система / Платформа:</strong> {{ agent.platform or "Не визначено" }}
+      </div>
+      <div class="list-group-item bg-dark text-light border-secondary">
+        <strong>Повний User-Agent:</strong> <code>{{ agent.string }}</code>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
