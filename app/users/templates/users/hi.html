@@ -5,16 +5,15 @@
 {% block content %}
 <div class="row">
   <div class="col-md-3 mb-4">
-    <!-- Vertical navigation -->
     <div class="card p-3">
       <h5 class="card-title text-light mb-3">FlaskApp</h5>
       <nav>
         <ul class="nav flex-column gap-2">
           <li class="nav-item">
-            <a class="nav-link text-light bg-dark rounded border border-secondary" href="{{ url_for('users.greetings', name='John', age=30) }}">Greet John</a>
+            <a class="nav-link text-light bg-dark rounded border border-secondary" href="{{ url_for('.greetings', name='John', age=30) }}">Greet John</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light bg-dark rounded border border-secondary" href="{{ url_for('users.admin') }}">Admin</a>
+            <a class="nav-link text-light bg-dark rounded border border-secondary" href="{{ url_for('.admin') }}">Admin</a>
           </li>
         </ul>
       </nav>
@@ -22,7 +21,6 @@
   </div>
 
   <div class="col-md-9">
-    <!-- Main content -->
     <div class="card p-4">
       <h2 class="mb-4">Hello :)</h2>
       <p class="fs-4 mb-2">User: <strong>{{ name }}</strong></p>
