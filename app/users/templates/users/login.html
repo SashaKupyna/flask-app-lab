@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Вхід до системи{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card p-4 shadow-sm">
+      <h2 class="text-center mb-4">Login</h2>
+      <form action="{{ url_for('.login') }}" method="post">
+        <div class="mb-3">
+          <label for="username" class="form-label">User name</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Введіть логін" required autofocus>
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Введіть пароль" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
