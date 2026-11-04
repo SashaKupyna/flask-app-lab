@@ -1,5 +1,8 @@
 import unittest
+import warnings
 from app import app
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 class ContactFormTestCase(unittest.TestCase):

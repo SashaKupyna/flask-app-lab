@@ -8,7 +8,7 @@ class ContactForm(FlaskForm):
         "Name",
         validators=[
             DataRequired(message="Обов'язкове поле"),
-            Length(min=4, max=10, message="має бути від 4 до 10 символів"),
+            Length(min=4, max=10, message="від 4 до 10 символів"),
         ],
     )
     email = StringField(
@@ -38,7 +38,7 @@ class ContactForm(FlaskForm):
         "Message",
         validators=[
             DataRequired(message="Обов'язкове поле"),
-            Length(max=500, message="до 500 символів"),
+            Length(max=500, message="Довжина до 500 символів"),
         ],
     )
     submit = SubmitField("Send Message")

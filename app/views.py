@@ -28,6 +28,11 @@ def resume():
     return render_template("resume.html", title="Резюме")
 
 
+@app.route("/product")
+def product():
+    return redirect(url_for("products.product_list"))
+
+
 @app.route("/contact", methods=["GET", "POST"], endpoint="contact")
 @app.route("/contacts", methods=["GET", "POST"], endpoint="contacts")
 def contact():
@@ -38,9 +43,9 @@ def contact():
             f"Phone: {form.phone.data} | Subject: {form.subject.data} | "
             f"Message: {form.message.data}"
         )
-        flash("повідомлення успішно надіслано", "success")
+        flash("Ваше повідомлення успішно надіслано!", "success")
         return redirect(url_for("contact"))
     elif request.method == "POST":
-        flash("Помилка, перевірте введені дані.", "danger")
+        flash("Помилка валідації форми. Перевірте введені дані.", "danger")
 
     return render_template("contacts.html", form=form, title="Контакти")

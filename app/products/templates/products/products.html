@@ -3,16 +3,43 @@
 {% block title %}Каталог товарів{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Список товарів</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="mb-0">Список товарів</h2>
+  <a href="{{ url_for('.product_add') }}" class="btn btn-success">Додати новий товар</a>
+</div>
 
 <div class="row">
   {% for product in products %}
   <div class="col-md-4 mb-4">
-    <div class="card p-3 h-100">
-      <h4 class="card-title">{{ product.name }}</h4>
-      <p class="text-success fs-5">Ціна: ${{ product.price }}</p>
-      <p class="card-text">{{ product.content }}</p>
-      <a href="{{ url_for('.product_detail', product_id=product.id) }}" class="btn btn-primary mt-auto">Детальніше</a>
+    <div class="card p-3 h-100 d-flex flex-column">
+      {% if product.image %}
+        <img src="{{ url_for('products.static', filename=product.image) }}" alt="{{ product.name }}" class="img-fluid rounded mb-3" style="height: 180px; object-fit: cover;">
+      {% else %}
+        <div class="bg-secondary-subtle rounded d-flex align-items-center justify-content-center text-muted mb-3" style="height: 180px;">
+          <span>Без зображення</span>
+        </div>
+      {% endif %}
+
+      <div class="d-flex justify-content-between align-items-start mb-1">
+        <h4 class="card-title mb-0">{{ product.name }}</h4>
+        <span class="badge bg-info text-dark">{{ product.category }}</span>
+      </div>
+
+      <p class="text-success fs-5 fw-bold mb-1">${{ "%.2f"|format(product.price) }}</p>
+      <p class="text-muted small mb-2">Кількість: {{ product.quantity }} шт.</p>
+      <p class="card-text text-truncate mb-2">{{ product.content }}</p>
+      <p class="text-secondary small mb-3">Додано: {{ product.created_at }}</p>
+
+      <div class="mt-auto d-flex gap-2">
+        <a href="{{ url_for('.product_detail', product_id=product.id) }}" class="btn btn-primary btn-sm flex-grow-1">Детальніше</a>
+        <a href="{{ url_for('.product_edit', product_id=product.id) }}" class="btn btn-outline-warning btn-sm">Редагувати</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <div class="alert alert-secondary text-center">
+      Товари відсутні в базі даних.
     </div>
   </div>
   {% endfor %}

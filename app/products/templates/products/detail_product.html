@@ -3,13 +3,44 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-<div class="card p-4">
-  <h2>{{ product.name }}</h2>
-  <h4 class="text-success mb-3">Ціна: ${{ product.price }}</h4>
-  <p class="fs-5">{{ product.content }}</p>
-  <p class="text-secondary">ID товару: {{ product.id }}</p>
-  <div>
-    <a href="{{ url_for('.product_list') }}" class="btn btn-secondary">Назад до каталогу</a>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card p-4 shadow-sm">
+      <div class="row">
+        <div class="col-md-5 mb-3 mb-md-0">
+          {% if product.image %}
+            <img src="{{ url_for('products.static', filename=product.image) }}" alt="{{ product.name }}" class="img-fluid rounded border" style="max-height: 280px; width: 100%; object-fit: cover;">
+          {% else %}
+            <div class="bg-secondary-subtle rounded d-flex align-items-center justify-content-center text-muted" style="height: 250px;">
+              <span>Без зображення</span>
+            </div>
+          {% endif %}
+        </div>
+        <div class="col-md-7">
+          <div class="d-flex justify-content-between align-items-start">
+            <h2>{{ product.name }}</h2>
+            <span class="badge bg-info text-dark fs-6">{{ product.category }}</span>
+          </div>
+          <h4 class="text-success my-2">${{ "%.2f"|format(product.price) }}</h4>
+          <p class="text-muted"><strong>В наявності:</strong> {{ product.quantity }} шт.</p>
+          <hr>
+          <p class="fs-6">{{ product.content }}</p>
+          <p class="text-secondary small mb-3">Дата додавання: {{ product.created_at }}</p>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <a href="{{ url_for('.product_list') }}" class="btn btn-secondary">Назад до каталогу</a>
+        <div class="d-flex gap-2">
+          <a href="{{ url_for('.product_edit', product_id=product.id) }}" class="btn btn-warning">Редагувати</a>
+          <form action="{{ url_for('.product_delete', product_id=product.id) }}" method="post" onsubmit="return confirm('Ви впевнені, що хочете видалити цей товар?');">
+            <button type="submit" class="btn btn-danger">Видалити товар</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
