@@ -8,7 +8,7 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 DB_PATH = os.path.join(DATA_DIR, "products.json")
 
-db = TinyDB(DB_PATH)
+db = TinyDB(DB_PATH, indent=4, ensure_ascii=False)
 products_table = db.table("products")
 
 atexit.register(db.close)
